@@ -1,9 +1,65 @@
+import matrix.*
+import nave.*
 
 
-describe "group of tests " {
 
-  test "test 01" {
-    assert.equals(100, 50+50)
+describe "matrix" {
+
+  test "el mayor con vitalidad de la nave es neo" {
+    nave.ingresarPasajero(neo)
+    nave.ingresarPasajero(morfeo)
+    nave.ingresarPasajero(trinity)
+
+
+    assert.equals(nave.pasajeroConMayorVitalidad(), neo)
   }
+  test "la nave esta equilibrada" {
+    nave.ingresarPasajero(neo)
+    nave.ingresarPasajero(morfeo)
+    nave.ingresarPasajero(trinity)
+    neo.saltar()
+    neo.saltar()
+    neo.saltar()
+    neo.saltar()
+    morfeo.saltar() 
+    morfeo.saltar()
+    morfeo.saltar()
+    morfeo.saltar()
+    morfeo.saltar()
+    morfeo.saltar()
+    morfeo.saltar()
+    morfeo.saltar()
+    console.println(nave.pasajerosConDobleVitalidad())
+    console.println(nave.vitalidadDeLosPasajeros())
+    assert.that(nave.estaEquilibrado())
+  }
+  test "la nave no esta equilibrada" {
+    nave.ingresarPasajero(neo)
+    nave.ingresarPasajero(morfeo)
+    nave.ingresarPasajero(trinity)
+    neo.saltar()
+    neo.saltar()
+    morfeo.saltar() 
+    morfeo.saltar()
+    morfeo.saltar()
+    morfeo.saltar()
+    console.println(nave.pasajerosConDobleVitalidad())
+    console.println(nave.vitalidadDeLosPasajeros())
+    assert.notThat(nave.estaEquilibrado())
+  }
+  test "neo al chocar dentro de la nave tiene 50 de vitalidad " {
+    nave.ingresarPasajero(neo)
+    nave.ingresarPasajero(morfeo)
+    nave.ingresarPasajero(trinity)
+    nave.choca()
+    assert.equals(5, neo.vitalidad())
 
+  }
+  test "morfeo al acelerar , no es afectado por el impulso y mantiene los 8 de vitalidad " {
+    nave.ingresarPasajero(neo)
+    nave.ingresarPasajero(morfeo)
+    nave.ingresarPasajero(trinity)
+    nave.acelerar()
+    assert.equals(10, neo.vitalidad())
+  }
 }
